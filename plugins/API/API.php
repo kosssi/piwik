@@ -333,11 +333,11 @@ class API extends \Piwik\Plugin\API
     public function getProcessedReport($idSite, $period, $date, $apiModule, $apiAction, $segment = false,
                                        $apiParameters = false, $idGoal = false, $language = false,
                                        $showTimer = true, $hideMetricsDoc = false, $idSubtable = false, $showRawMetrics = false,
-                                       $format_metrics = null)
+                                       $format_metrics = null, $idDimension = false)
     {
         $reporter = new ProcessedReport();
         $processed = $reporter->getProcessedReport($idSite, $period, $date, $apiModule, $apiAction, $segment,
-            $apiParameters, $idGoal, $language, $showTimer, $hideMetricsDoc, $idSubtable, $showRawMetrics, $format_metrics);
+            $apiParameters, $idGoal, $language, $showTimer, $hideMetricsDoc, $idSubtable, $showRawMetrics, $format_metrics, $idDimension);
 
         return $processed;
     }
@@ -427,13 +427,14 @@ class API extends \Piwik\Plugin\API
      * @param bool|int $idGoal
      * @param bool|string $legendAppendMetric
      * @param bool|string $labelUseAbsoluteUrl
+     * @param bool|int $idDimension
      * @return array
      */
-    public function getRowEvolution($idSite, $period, $date, $apiModule, $apiAction, $label = false, $segment = false, $column = false, $language = false, $idGoal = false, $legendAppendMetric = true, $labelUseAbsoluteUrl = true)
+    public function getRowEvolution($idSite, $period, $date, $apiModule, $apiAction, $label = false, $segment = false, $column = false, $language = false, $idGoal = false, $legendAppendMetric = true, $labelUseAbsoluteUrl = true, $idDimension = false)
     {
         $rowEvolution = new RowEvolution();
         return $rowEvolution->getRowEvolution($idSite, $period, $date, $apiModule, $apiAction, $label, $segment, $column,
-            $language, $idGoal, $legendAppendMetric, $labelUseAbsoluteUrl);
+            $language, $idGoal, $legendAppendMetric, $labelUseAbsoluteUrl, $idDimension);
     }
 
     /**

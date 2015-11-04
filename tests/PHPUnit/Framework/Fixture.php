@@ -462,6 +462,7 @@ class Fixture extends \PHPUnit_Framework_Assert
 
         // Clear the memory Website cache
         Site::clearCache();
+        Cache::clearWebsiteCache($idSite);
 
         return $idSite;
     }

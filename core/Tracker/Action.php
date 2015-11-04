@@ -62,6 +62,7 @@ abstract class Action
 
     private $idLinkVisitAction;
     private $actionIdsCached = array();
+    private $customFields = array();
     private $actionName;
     private $actionType;
 
@@ -228,6 +229,16 @@ abstract class Action
         return false;
     }
 
+    public function setCustomField($field, $value)
+    {
+        $this->customFields[$field] = $value;
+    }
+
+    public function getCustomFields()
+    {
+        return $this->customFields;
+    }
+
     public function getIdActionUrl()
     {
         $idUrl = $this->actionIdsCached['idaction_url'];
@@ -386,6 +397,7 @@ abstract class Action
         }
 
         $visitAction = array_merge($visitAction, $customVariables);
+        $visitAction = array_merge($visitAction, $this->customFields);
 
         $this->idLinkVisitAction = $this->getModel()->createAction($visitAction);
 

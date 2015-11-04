@@ -1,7 +1,8 @@
-{% macro submenuItem(name, url, anchorlink) %}
+{% macro submenuItem(name, url, anchorlink, tooltip) %}
     {% if name|slice(0,1) != '_' %}
         <li>
-            <a class="item" href="{% if anchorlink %}#{% else %}index.php?{% endif %}{{ url|urlRewriteWithParameters|slice(1) }}">
+            <a class="item" href="{% if anchorlink %}#{% else %}index.php?{% endif %}{{ url|urlRewriteWithParameters|slice(1) }}"
+               {% if tooltip %}title="{{ tooltip|e('html_attr') }}"{% endif %}>
                 {{ name|translate }}
             </a>
         </li>
@@ -58,7 +59,7 @@
                                 {% if urlParameters._url is defined and urlParameters._url is not iterable %}
                                     {{ _self.groupedItem(name,urlParameters._url, anchorlink) }}
                                 {% elseif name|slice(0,1) != '_' %}
-                                    {{ _self.submenuItem(name,urlParameters._url, anchorlink) }}
+                                    {{ _self.submenuItem(name,urlParameters._url, anchorlink, urlParameters._tooltip) }}
                                 {% endif %}
                             {% endfor %}
                         </ul>

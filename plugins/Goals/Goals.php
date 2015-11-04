@@ -51,6 +51,7 @@ class Goals extends \Piwik\Plugin
                 'General_Visitors',
                 'VisitsSummary_VisitsSummary',
                 'VisitTime_ColumnServerTime',
+                'CustomDimensions_CustomDimensions',
             );
         }
 

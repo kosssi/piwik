@@ -119,6 +119,14 @@ class Cache
     }
 
     /**
+     * Clear website cache.
+     */
+    public static function clearWebsiteCache($idSite)
+    {
+        self::getCache()->delete((int) $idSite);
+    }
+
+    /**
      * Returns contents of general (global) cache.
      * If the cache file tmp/cache/tracker/general.php does not exist yet, create it
      *
