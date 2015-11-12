@@ -65,6 +65,22 @@ class PluginList
     }
 
     /**
+     * Returns the list of plugins that should be loaded. Used by the container factory to
+     * load plugin specific DI overrides.
+     *
+     * @return string[]
+     */
+    public function getLoadedAndInstalledPlugins()
+    {
+        $section1 = $this->settings->getSection('Plugins');
+        $section1 = @$section1['Plugins'] ?: array();
+        $section2 = $this->settings->getSection('PluginsInstalled');
+        $section2 = @$section2['PluginsInstalled'] ?: array();
+
+        return array_intersect($section1, $section2);
+    }
+
+    /**
      * Returns the list of plugins that are bundled with Piwik.
      *
      * @return string[]

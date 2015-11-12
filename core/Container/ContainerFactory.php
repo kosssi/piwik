@@ -131,7 +131,7 @@ class ContainerFactory
 
     private function addPluginConfigs(ContainerBuilder $builder)
     {
-        $plugins = $this->pluginList->getActivatedPlugins();
+        $plugins = $this->pluginList->getLoadedAndInstalledPlugins();
 
         foreach ($plugins as $plugin) {
             $baseDir = Manager::getPluginsDirectory() . $plugin;
